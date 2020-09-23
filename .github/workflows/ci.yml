@@ -30,7 +30,7 @@ jobs:
       with:
         #repository: overbaard/multi-repo-ci
         repository: kabir/multi-repo-ci
-        ref: cleanup-job
+        ref: development
         path: .ci-tools
     - name: Build with Maven
       working-directory: .ci-tools
