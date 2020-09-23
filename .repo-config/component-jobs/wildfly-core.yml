@@ -7,11 +7,14 @@ build-job: build
 jobs:
   # Build the server skipping tests for speed since other jobs depend on this. The maven repo is cached
   build:
+    runs-on: 
+      - end-job-runner
     env:
       MAVEN_BUILD_EXTRA_PARAMS: -DlegacyBuild -DlegacyRelease -DskipTests
     run:
       # Do not quote the usage of the env vars, or the quotes get wrapped in single quutes,
       # which means they don't take effect (e.g. -DskipTests from MAVEN_BUILD_EXTRA_PARAMS will not work!)
+      - shell: echo hello!
       - mvn: install ${MAVEN_TEST_PARAMS} ${MAVEN_BUILD_EXTRA_PARAMS}
       - shell: echo "build done!"
       # Temp stuff
