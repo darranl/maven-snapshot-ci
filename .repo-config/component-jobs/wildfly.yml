@@ -10,13 +10,15 @@ jobs:
     env:
       MAVEN_BUILD_EXTRA_PARAMS: -DlegacyBuild -DlegacyRelease -DskipTests
     run:
-      # Do not quote the usage of the env vars, or the quotes get wrapped in single quutes,
-      # which means they don't take effect (e.g. -DskipTests from MAVEN_BUILD_EXTRA_PARAMS will not work!)
-      - mvn: install ${MAVEN_TEST_PARAMS} ${MAVEN_BUILD_EXTRA_PARAMS}
-      - shell: ls -R dist/target/
-      - shell: echo "build done!"
-      # Temp code
-      - shell: "echo My version: ${OB_PROJECT_VERSION}"
+#       # Do not quote the usage of the env vars, or the quotes get wrapped in single quutes,
+#       # which means they don't take effect (e.g. -DskipTests from MAVEN_BUILD_EXTRA_PARAMS will not work!)
+#       - mvn: install ${MAVEN_TEST_PARAMS} ${MAVEN_BUILD_EXTRA_PARAMS}
+#       - shell: ls -R dist/target/
+#       - shell: echo "build done!"
+#       # Temp code
+#       - shell: "echo My version: ${OB_PROJECT_VERSION}"
+      - shell: echo "line 1" >> $OB_STATUS_TEXT
+      - shell: echo "line 2" >> $OB_STATUS_TEXT
 
 
   #####################################
