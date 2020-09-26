@@ -172,10 +172,10 @@ end-job:
         repository: wildfly/wildfly-s2i
         path: .maven-repo-generator
     - run: |
-        # Important to remember ${OB_MAVEN_DEPENDENCY_VERSIONS} here!
-        mvn install -pl dist -Prelease ${OB_MAVEN_DEPENDENCY_VERSIONS}
-        cat dist/target/wildfly-galleon-pack-${OB_PROJECT_VERSION}-all-artifacts-list.txt
-        mv dist/target/wildfly-${OB_PROJECT_VERSION}.zip ${OB_ARTIFACTS_DIR}/wildfly.zip
+#         # Important to remember ${OB_MAVEN_DEPENDENCY_VERSIONS} here!
+#         mvn install -pl dist -Prelease ${OB_MAVEN_DEPENDENCY_VERSIONS}
+#         cat dist/target/wildfly-galleon-pack-${OB_PROJECT_VERSION}-all-artifacts-list.txt
+#         mv dist/target/wildfly-${OB_PROJECT_VERSION}.zip ${OB_ARTIFACTS_DIR}/wildfly.zip
         echo "wf end" >> $OB_STATUS_TEXT
 #     - name: Back up maven repo zip
 #       run: |
