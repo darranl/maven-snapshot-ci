@@ -19,6 +19,8 @@ jobs:
 #       - shell: "echo My version: ${OB_PROJECT_VERSION}"
       - shell: echo "line 1" >> $OB_STATUS_TEXT
       - shell: echo "line 2" >> $OB_STATUS_TEXT
+      # Do a part of the build to populate the repo backups
+      - mvn: install -pl naming -am -DskipTests
 
 
   #####################################
