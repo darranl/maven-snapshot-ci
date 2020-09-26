@@ -17,8 +17,8 @@ jobs:
 #       - shell: echo "build done!"
 #       # Temp code
 #       - shell: "echo My version: ${OB_PROJECT_VERSION}"
-      - shell: echo "line 1" >> $OB_STATUS_TEXT
-      - shell: echo "line 2" >> $OB_STATUS_TEXT
+      - shell: echo "build 1" >> $OB_STATUS_TEXT
+      - shell: echo "build 2" >> $OB_STATUS_TEXT
       # Do a part of the build to populate the repo backups
       - mvn: install -pl naming -am -DskipTests
 
@@ -176,11 +176,12 @@ end-job:
         mvn install -pl dist -Prelease ${OB_MAVEN_DEPENDENCY_VERSIONS}
         cat dist/target/wildfly-galleon-pack-${OB_PROJECT_VERSION}-all-artifacts-list.txt
         mv dist/target/wildfly-${OB_PROJECT_VERSION}.zip ${OB_ARTIFACTS_DIR}/wildfly.zip
-    - name: Back up maven repo zip
-      run: |
-        cd tools/maven-repo-generator
-        mvn install
-        java -jar target/maven-repo-generator-1.0.jar ../../../dist/target/wildfly-galleon-pack-${OB_PROJECT_VERSION}-all-artifacts-list.txt
-        mv maven-repo.zip ${OB_ARTIFACTS_DIR}/maven-repo.zip
-        ls -al ${OB_ARTIFACTS_DIR}
-      working-directory: .maven-repo-generator
+        echo "wf end" >> $OB_STATUS_TEXT
+#     - name: Back up maven repo zip
+#       run: |
+#         cd tools/maven-repo-generator
+#         mvn install
+#         java -jar target/maven-repo-generator-1.0.jar ../../../dist/target/wildfly-galleon-pack-${OB_PROJECT_VERSION}-all-artifacts-list.txt
+#         mv maven-repo.zip ${OB_ARTIFACTS_DIR}/maven-repo.zip
+#         ls -al ${OB_ARTIFACTS_DIR}
+#       working-directory: .maven-repo-generator
