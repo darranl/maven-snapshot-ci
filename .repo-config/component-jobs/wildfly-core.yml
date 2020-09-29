@@ -22,42 +22,42 @@ jobs:
   # it is different from the other testsuite tests in that we want to build everything up to and including
   # the smoke tests
 
-#   ts-smoke:
-#     # This does the unit tests for all the components and the testsuite
-#     # moduled which are run when not passing in -DallTests, i.e.
-#     # - standalone
-#     # - elytron
-#     # - embedded
-#     # - scripts
-#     needs: [build]
-#     run:
-#       - mvn: package ${MAVEN_SMOKE_TEST_PARAMS}
+  ts-smoke:
+    # This does the unit tests for all the components and the testsuite
+    # moduled which are run when not passing in -DallTests, i.e.
+    # - standalone
+    # - elytron
+    # - embedded
+    # - scripts
+    needs: [build]
+    run:
+      - mvn: package ${MAVEN_SMOKE_TEST_PARAMS}
 
 
-#   ts-domain:
-#     needs: [build]
-#     run:
-#       - mvn: package ${MAVEN_TEST_PARAMS} -pl testsuite/domain -Dts.timeout.factor=300
+  ts-domain:
+    needs: [build]
+    run:
+      - mvn: package ${MAVEN_TEST_PARAMS} -pl testsuite/domain -Dts.timeout.factor=300
 
-#   ts-layers:
-#     needs: [build]
-#     run:
-#       - mvn: package ${MAVEN_TEST_PARAMS} -Dts.layers -pl testsuite/layers
+  ts-layers:
+    needs: [build]
+    run:
+      - mvn: package ${MAVEN_TEST_PARAMS} -Dts.layers -pl testsuite/layers
 
-#   ts-manualmode:
-#     needs: [build]
-#     run:
-#       - mvn: package ${MAVEN_TEST_PARAMS} -pl testsuite/manualmode
+  ts-manualmode:
+    needs: [build]
+    run:
+      - mvn: package ${MAVEN_TEST_PARAMS} -pl testsuite/manualmode
 
-#   ts-patching:
-#     needs: [build]
-#     run:
-#       - mvn: package ${MAVEN_TEST_PARAMS} -pl testsuite/patching
+  ts-patching:
+    needs: [build]
+    run:
+      - mvn: package ${MAVEN_TEST_PARAMS} -pl testsuite/patching
 
-#   ts-rbac:
-#     needs: [build]
-#     run:
-#       - mvn: package ${MAVEN_TEST_PARAMS} -pl testsuite/rbac
+  ts-rbac:
+    needs: [build]
+    run:
+      - mvn: package ${MAVEN_TEST_PARAMS} -pl testsuite/rbac
 
   # TODO - add all the other modules
 
