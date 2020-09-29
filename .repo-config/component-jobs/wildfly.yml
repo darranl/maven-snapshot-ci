@@ -171,7 +171,7 @@ end-job:
       with:
         repository: wildfly/wildfly-s2i
         path: .maven-repo-generator
-    -run: echo hello
+    - run: echo hello
 #    - run: echo "wf end" >> $OB_STATUS_TEXT
 #    - run: |
 #         # Important to remember ${OB_MAVEN_DEPENDENCY_VERSIONS} here!
