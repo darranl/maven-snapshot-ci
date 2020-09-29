@@ -17,8 +17,8 @@ jobs:
       #       - shell: echo "build done!"
       #       # Temp code
       #       - shell: "echo My version: ${OB_PROJECT_VERSION}"
-      - shell: echo build 1 >> $OB_STATUS_TEXT
-      - shell: echo build 2 >> $OB_STATUS_TEXT
+      # - shell: echo "build 1" >> $OB_STATUS_TEXT
+      # - shell: echo "build 2" >> $OB_STATUS_TEXT
       # Do a part of the build to populate the repo backups
       - mvn: install -pl naming -am -DskipTests
 
@@ -171,7 +171,8 @@ end-job:
       with:
         repository: wildfly/wildfly-s2i
         path: .maven-repo-generator
-    - run: echo "wf end" >> $OB_STATUS_TEXT
+    -run: echo hello
+#    - run: echo "wf end" >> $OB_STATUS_TEXT
 #    - run: |
 #         # Important to remember ${OB_MAVEN_DEPENDENCY_VERSIONS} here!
 #         mvn install -pl dist -Prelease ${OB_MAVEN_DEPENDENCY_VERSIONS}
