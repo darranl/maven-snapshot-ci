@@ -11,7 +11,6 @@ end-job:
   steps:
     - name: test
       run: |-
-        echo hello
         echo "workflow end job" >> $OB_STATUS_TEXT
         ls -al ${OB_ARTIFACTS_DIR}
     - name: Dump GitHub context
