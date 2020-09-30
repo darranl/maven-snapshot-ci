@@ -16,9 +16,12 @@ end-job:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"   
     - name: test
-      run: |-
+      run: |
         ls -al ${OB_ARTIFACTS_DIR}
         IP_ADDR=$(hostname -I)
+        # Remove spaces - note if the machine has more than one network interface they
+        # will all be returned, and I am not handling that at the moment
+        IP_ADDR="$(echo $IP_ADDR | sed -e 's/^[[:space:]]*//')"
         TGT_FOLDER=/var/www/html/issue-${OB_ISSUE_ID}
         sudo rm -rf ${TGT_FOLDER}/*
         sudo mkdir -p ${TGT_FOLDER}
@@ -28,8 +31,7 @@ end-job:
         if [ -f ${OB_ARTIFACTS_DIR}/maven-repo.zip ]; then
           sudo cp ${OB_ARTIFACTS_DIR}/maven-repo.zip ${TGT_FOLDER}
         fi
-        
         # Link to the artifacts
-        echo Artifacts can be downloaded from http://${IP_ADDR}/issue-${OB_ISSUE_ID} >> $OB_STATUS_TEXT
-        # Link to the workflow 
-        echo https://github.com/${{github.repository}}/actions/runs/${{github.run_id}} >> $OB_STATUS_TEXT
+        echo Artifacts can be downloaded from: http://${IP_ADDR}/issue-${OB_ISSUE_ID} >> $OB_STATUS_TEXT
+        # Link to the workflow
+        echo The workflow run is at: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}} >> $OB_STATUS_TEXT
