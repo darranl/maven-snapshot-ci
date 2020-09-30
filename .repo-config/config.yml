@@ -17,14 +17,14 @@ end-job:
       run: |-
         ls -al ${OB_ARTIFACTS_DIR}
         IP_ADDR=$(hostname -I)
-        TGT_FOLDER=/var/www/html/${OB_ISSUE_ID}
-        rm -rf ${TGT_FOLDER}/*
-        mkdir -p ${TGT_FOLDER}
+        TGT_FOLDER=/var/www/html/issue-${OB_ISSUE_ID}
+        sudo rm -rf ${TGT_FOLDER}/*
+        sudo mkdir -p ${TGT_FOLDER}
         if [ -f ${OB_ARTIFACTS_DIR}/wildfly.zip ]; then
-          cp ${OB_ARTIFACTS_DIR}/wildfly.zip ${TGT_FOLDER}
+          sudo cp ${OB_ARTIFACTS_DIR}/wildfly.zip ${TGT_FOLDER}
         fi
         if [ -f ${OB_ARTIFACTS_DIR}/maven-repo.zip ]; then
-          cp ${OB_ARTIFACTS_DIR}/maven-repo.zip ${TGT_FOLDER}
+          sudo cp ${OB_ARTIFACTS_DIR}/maven-repo.zip ${TGT_FOLDER}
         fi
         
         # Link to the artifacts
