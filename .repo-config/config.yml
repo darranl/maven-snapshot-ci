@@ -9,12 +9,25 @@ issue-reporting:
 end-job:
   if: ${{ always() }}
   steps:
-    - name: test
-      run: |-
-        echo "workflow end job" >> $OB_STATUS_TEXT
-        ls -al ${OB_ARTIFACTS_DIR}
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
-   
+      run: echo "$GITHUB_CONTEXT"   
+    - name: test
+      run: |-
+        ls -al ${OB_ARTIFACTS_DIR}
+        IP_ADDR=$(hostname -I)
+        TGT_FOLDER=/var/www/html/${OB_ISSUE_ID}
+        mkdir -p ${TGT_FOLDER}
+        rm -rf ${TGT_FOLDER}/*
+        if [ -f ${OB_ARTIFACTS_DIR}/wildfly.zip }; then
+          cp ${OB_ARTIFACTS_DIR}/wildfly.zip ${TGT_FOLDER}
+        fi
+        if [ -f ${OB_ARTIFACTS_DIR}/maven-repo.zip }; then
+          cp ${OB_ARTIFACTS_DIR}/maven-repo.zip ${TGT_FOLDER}
+        fi
+        
+        # Link to the artifacts
+        echo Artifacts can be downloaded from http://${IP_ADDR}/${OB_ISSUE_ID} >> $OB_STATUS_TEXT
+        # Link to the workflow 
+        echo https://github.com/${{github.repository}}/actions/runs/${{github.run_id}} >> $OB_STATUS_TEXT
