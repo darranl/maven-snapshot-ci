@@ -8,6 +8,7 @@ issue-reporting:
    failure: CI-Failure
 end-job:
   if: ${{ always() }}
+  runs-on: end-job
   steps:
     - name: Dump GitHub context
       env:
@@ -28,6 +29,6 @@ end-job:
         fi
         
         # Link to the artifacts
-        echo Artifacts can be downloaded from http://${IP_ADDR}/${OB_ISSUE_ID} >> $OB_STATUS_TEXT
+        echo Artifacts can be downloaded from http://${IP_ADDR}/issue-${OB_ISSUE_ID} >> $OB_STATUS_TEXT
         # Link to the workflow 
         echo https://github.com/${{github.repository}}/actions/runs/${{github.run_id}} >> $OB_STATUS_TEXT
