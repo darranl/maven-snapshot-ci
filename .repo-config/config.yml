@@ -8,7 +8,8 @@ issue-reporting:
    failure: CI-Failure
 end-job:
   if: ${{ always() }}
-  runs-on: end-job
+  runs-on: 
+    - end-job
   steps:
     - name: Dump GitHub context
       env:
