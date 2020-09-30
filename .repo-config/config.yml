@@ -23,7 +23,7 @@ end-job:
         if [ -f ${OB_ARTIFACTS_DIR}/wildfly.zip ]; then
           cp ${OB_ARTIFACTS_DIR}/wildfly.zip ${TGT_FOLDER}
         fi
-        if [ -f ${OB_ARTIFACTS_DIR}/maven-repo.zip }; then
+        if [ -f ${OB_ARTIFACTS_DIR}/maven-repo.zip ]; then
           cp ${OB_ARTIFACTS_DIR}/maven-repo.zip ${TGT_FOLDER}
         fi
         
