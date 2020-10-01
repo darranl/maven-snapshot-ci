@@ -20,8 +20,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        repository: kabir/wildfly
-        ref: gh-action-fixes
+        repository: darranl/wildfly
+        ref: citesting
     - uses: actions/checkout@v2
       with:
         ref: ${{ github.ref }}
