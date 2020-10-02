@@ -48,8 +48,8 @@ jobs:
       run: |
         mvn -B install ${MAVEN_TEST_PARAMS} ${MAVEN_BUILD_EXTRA_PARAMS}
         echo build done!
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+#    - name: Setup tmate session
+#      uses: mxschmitt/action-tmate@v3
     - name: Test build Build
       run: mvn -B package ${MAVEN_TEST_PARAMS} -pl testsuite/manualmode -Dtest=RemoteSshGitRepositoryTestCase
     - name: Run multi-repo-ci-tool 'copy-logs' command
